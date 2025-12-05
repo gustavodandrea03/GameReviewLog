@@ -1,0 +1,36 @@
+<div class="login-container">
+  <h2>Acesso ao GameReviewLog</h2>
+  
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" class="form-control">
+      
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="alert alert-danger">
+        Email é obrigatório e deve ser válido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input id="password" type="password" formControlName="password" class="form-control">
+      
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="alert alert-danger">
+        A senha deve ter pelo menos 6 caracteres.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid || loading" class="btn btn-primary">
+      {{ loading ? 'Acedendo...' : 'Login' }}
+    </button>
+
+    <div *ngIf="errorMessage" class="alert alert-error">
+      {{ errorMessage }}
+    </div>
+
+    <p class="mt-3">
+      Não tem conta? <a [routerLink]="['/register']">Registre-se aqui</a>.
+    </p>
+  </form>
+</div>

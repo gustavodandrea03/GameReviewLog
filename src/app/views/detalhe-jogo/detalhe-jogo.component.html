@@ -1,0 +1,93 @@
+<div class="detalhe-page-container">
+  <div *ngIf="loading" class="alert alert-info">
+    A carregar detalhes...
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-error">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="jogo$ | async as jogo" class="detalhe-container">
+    
+    <div class="header-detalhe">
+      <img [src]="jogo.capa_url" alt="Capa de {{ jogo.titulo }}" class="capa-grande">
+      
+      <div class="info-body">
+        <h1>{{ jogo.titulo }}</h1>
+        <p><strong>Plataforma:</strong> {{ jogo.plataforma }}</p>
+        <p><strong>Gênero:</strong> {{ jogo.genero }}</p>
+        <p><strong>Lançamento:</strong> {{ jogo.data_lancamento | date }}</p>
+        
+        <div class="pontuacao-final">
+          Média de Críticos: 
+          <span class="score-display">
+            {{ (jogo.pontuacao_media !== null && jogo.pontuacao_media !== undefined) ? 
+              (jogo.pontuacao_media | number:'1.1-1') : 'N/A' 
+            }} ⭐
+          </span>
+        </div>
+        
+        <a [routerLink]="['/jogo', jogo.id, 'revisao-form']" class="btn btn-add">
+          Adicionar Minha Revisão
+        </a>
+
+        <a 
+            *ngIf="isOwner" 
+            [routerLink]="['/jogo/editar', jogo.id]" 
+            class="btn btn-primary"
+        >
+            Modificar Jogo
+        </a>
+        <button 
+            *ngIf="isOwner" 
+            (click)="excluirJogo(jogo.id!, jogo.capa_url)" 
+            class="btn btn-danger"
+        >
+            Excluir Jogo e Revisões
+        </button>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Análises dos Utilizadores</h2>
+
+    <div *ngIf="revisoes$ | async as revisoes" class="revisoes-list-container">
+      
+      <div *ngIf="revisoes.length === 0" class="alert alert-warning">
+        Nenhuma análise ainda para este jogo. Seja o primeiro!
+      </div>
+
+      <div *ngFor="let revisao of revisoes" class="revisao-card">
+        <div class="revisao-header">
+          <span class="revisao-score">Nota: {{ revisao.pontuacao }}/10</span>
+          <span class="revisao-date">({{ revisao.data_revisao | date }})</span>
+        </div>
+        
+        <div class="revisao-body">
+          <p><strong>Fortes:</strong> {{ revisao.pontos_fortes }}</p>
+          <p><strong>Fracos:</strong> {{ revisao.pontos_fracos }}</p>
+        </div>
+
+        <div *ngIf="revisao.screenshot_url && revisao.screenshot_url !== 'placeholder.txt'" class="revisao-screenshot">
+          <img [src]="revisao.screenshot_url" alt="Screenshot da Revisão">
+        </div>
+
+        <div *ngIf="revisao.user_id === currentUserId" class="revisao-actions" style="margin-top: 10px;">
+            <button 
+              (click)="editarRevisao(revisao.id!, jogo.id)" 
+              class="btn btn-secondary" 
+              style="margin-right: 10px;">
+              Editar Revisão
+            </button>
+
+            <button 
+              (click)="excluirRevisao(revisao.id!)" 
+              class="btn btn-danger-small">
+              Excluir Revisão
+            </button>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>

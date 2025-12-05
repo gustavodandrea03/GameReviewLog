@@ -1,0 +1,21 @@
+<ng-container *ngIf="currentUser$ | async as userState">
+    
+    <nav class="main-nav" *ngIf="userState">
+        <a routerLink="/catalogo">Catálogo de Jogos</a>
+        |
+        <a routerLink="/novo-jogo">Registrar Novo Jogo</a>
+        |
+        <a (click)="logout()" style="cursor: pointer;">
+            Sair ({{ userState.email }})
+        </a>
+    </nav>
+    
+    <nav class="main-nav" *ngIf="!userState">
+        <a routerLink="/catalogo">Catálogo de Jogos</a>
+    </nav>
+
+</ng-container>
+
+<hr>
+
+<router-outlet></router-outlet>

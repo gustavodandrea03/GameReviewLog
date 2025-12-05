@@ -1,0 +1,44 @@
+
+.catalogo-container {
+    padding: 20px;
+}
+
+.jogos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.jogo-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.capa-jogo {
+    width: 100%;
+    height: 300px; 
+    object-fit: cover; 
+}
+
+.card-body {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.pontuacao {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-top: 10px;
+}
+
+.score-display {
+    padding: 2px 8px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}

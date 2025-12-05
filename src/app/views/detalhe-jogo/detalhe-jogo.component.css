@@ -1,0 +1,43 @@
+
+.header-detalhe {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.capa-grande {
+    width: 250px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pontuacao-final {
+    font-size: 1.5em;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 6px;
+}
+
+.revisao-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    background: white;
+}
+
+.revisao-score {
+    font-weight: bold;
+    color: var(--color-primary);
+    font-size: 1.1em;
+}
+
+.revisao-screenshot img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px dashed #ddd;
+}

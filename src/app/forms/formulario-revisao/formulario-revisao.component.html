@@ -1,0 +1,59 @@
+<div class="form-container">
+  <h1>{{ isEditing ? 'Editar Análise' : 'Submeter Nova Revisão' }}</h1>
+  
+  <div class="alert alert-info">
+    A sua submissão irá acionar uma **Função SQL (Trigger)** no Supabase para recalcular a pontuação média do jogo.
+  </div>
+
+  <form [formGroup]="revisaoForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="jogo_id">Jogo a Revisar</label>
+      <select id="jogo_id" formControlName="jogo_id" class="form-control">
+        <option value="" disabled>-- Selecione um Jogo --</option>
+        
+        <ng-container *ngIf="jogos$ | async as jogos">
+          <option *ngFor="let jogo of jogos" [value]="jogo.id">
+            {{ jogo.titulo }} ({{ jogo.plataforma }})
+          </option>
+        </ng-container>
+      </select>
+      <div *ngIf="revisaoForm.get('jogo_id')?.invalid && revisaoForm.get('jogo_id')?.touched" class="alert alert-danger">
+        A seleção do jogo é obrigatória.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="pontuacao">Pontuação (1 a 10)</label>
+      <input id="pontuacao" type="number" formControlName="pontuacao" min="1" max="10" class="form-control">
+      <div *ngIf="revisaoForm.get('pontuacao')?.invalid && revisaoForm.get('pontuacao')?.touched" class="alert alert-danger">
+        A pontuação é obrigatória e deve estar entre 1 e 10.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="pontos_fortes">Pontos Fortes da Experiência</label>
+      <textarea id="pontos_fortes" formControlName="pontos_fortes" rows="4" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="pontos_fracos">Pontos Fracos da Experiência</label>
+      <textarea id="pontos_fracos" formControlName="pontos_fracos" rows="4" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group upload-group">
+      <label for="screenshot">Upload de Screenshot (Opcional)</label>
+      <input id="screenshot" type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control-file">
+      
+      <p *ngIf="selectedFile" class="file-status">Ficheiro selecionado: <strong>{{ selectedFile.name }}</strong></p>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-error mt-3">
+      {{ errorMessage }}
+    </div>
+
+    <button type="submit" [disabled]="revisaoForm.invalid || loading" class="btn btn-submit">
+      {{ loading ? 'A submeter...' : (isEditing ? 'Salvar Edição' : 'Submeter Revisão') }}
+    </button>
+  </form>
+</div>
