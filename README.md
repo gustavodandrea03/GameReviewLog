@@ -1,59 +1,16 @@
 # GameReviewLog
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
+O projeto GameReviewLog (GRL) é uma Single Page Application (SPA) de catálogo e crítica de jogos, desenvolvida em Angular e usando o Supabase como backend Serverless.
 
-## Development server
+A aplicação utiliza o Angular (Standalone Components) no frontend para gerenciar a interface e o roteamento (SPA). O backend é totalmente Serverless, baseado no Supabase, e implementa os quatro pilares:
 
-To start a local development server, run:
+Database (PostgreSQL): Armazena o CRUD completo para as entidades Jogos e Revisões, gerenciando a relação 1:N entre elas.
 
-```bash
-ng serve
-```
+Authentication: Gerencia o Login/Registro de usuários.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Storage: Armazena ficheiros como capas de jogos e screenshots.
 
-## Code scaffolding
+Functions: Utiliza uma função de banco de dados (Trigger) para calcular a pontuação média de um jogo em tempo real.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+🔒 Segurança e Funcionalidades
+O GRL garante a segurança através de Route Guards (para proteger rotas de escrita) e Row-Level Security (RLS), que impede que usuários modifiquem dados criados por outros. A principal funcionalidade é o Gerenciamento de Revisões e Jogos, com o diferencial de cálculo automático de pontuação média no backend via Trigger, demonstrando uma aplicação robusta de lógica de negócio em uma arquitetura Serverless.
