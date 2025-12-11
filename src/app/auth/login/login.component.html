@@ -1,0 +1,31 @@
+<div class="auth-container">
+  <h2>Login</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" placeholder="seu@email.com" />
+      <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+        Email obrigatório e válido.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input id="password" type="password" formControlName="password" placeholder="Mínimo 6 caracteres" />
+      <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+        Senha deve ter pelo menos 6 caracteres.
+      </small>
+    </div>
+
+    <button type="submit" [disabled]="loading || loginForm.invalid">
+      {{ loading ? 'Entrando...' : 'Entrar' }}
+    </button>
+  </form>
+
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <p class="switch-auth">
+    Não tem conta? <a routerLink="/register">Registre-se</a>
+  </p>
+</div>

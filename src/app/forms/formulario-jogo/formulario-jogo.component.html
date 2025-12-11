@@ -1,0 +1,47 @@
+<div class="form-container">
+  <h1>Registrar Novo Jogo</h1>
+
+  <form [formGroup]="jogoForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="titulo">Título do Jogo</label>
+      <input id="titulo" type="text" formControlName="titulo" class="form-control">
+      <div *ngIf="jogoForm.get('titulo')?.invalid && jogoForm.get('titulo')?.touched" class="alert alert-danger">
+        O título é obrigatório (mínimo 3 caracteres).
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="plataforma">Plataforma</label>
+      <input id="plataforma" type="text" formControlName="plataforma" class="form-control">
+      </div>
+
+    <div class="form-group">
+      <label for="genero">Gênero</label>
+      <input id="genero" type="text" formControlName="genero" class="form-control">
+      </div>
+
+    <div class="form-group">
+      <label for="data_lancamento">Data de Lançamento</label>
+      <input id="data_lancamento" type="date" formControlName="data_lancamento" class="form-control">
+    </div>
+
+    <div class="form-group upload-group">
+      <label for="capa">Upload da Capa (JPG/PNG)</label>
+      <input id="capa" type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control-file">
+      
+      <p *ngIf="selectedFile" class="file-status">Ficheiro selecionado: <strong>{{ selectedFile.name }}</strong></p>
+      <div *ngIf="!selectedFile && jogoForm.dirty" class="alert alert-danger">
+        A capa é obrigatória.
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-error mt-3">
+      {{ errorMessage }}
+    </div>
+
+    <button type="submit" [disabled]="jogoForm.invalid || !selectedFile || loading" class="btn btn-submit">
+      {{ loading ? 'A processar...' : 'Registrar Jogo' }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,85 @@
+
+.form-container {
+    max-width: 700px; 
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-container h2 {
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.form-container input:not([type="file"]),
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+    outline: none;
+}
+
+.form-container input.ng-invalid.ng-touched,
+.form-container textarea.ng-invalid.ng-touched {
+    border-color: var(--color-danger);
+}
+
+.error-message,
+.error {
+    color: var(--color-danger);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Estilo do Botão de Submissão */
+.form-container button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    
+    background-color: var(--color-accent); 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.form-container button[type="submit"]:hover:not(:disabled) {
+    background-color: #e67e00;
+}
+
+.form-container button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

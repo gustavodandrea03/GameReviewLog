@@ -1,0 +1,28 @@
+<header>
+    <div class="main-nav">
+        <a routerLink="/catalogo" class="app-title">
+            GameReviewLog (GRL)
+        </a>
+        
+        <div class="nav-links">
+            <a routerLink="/catalogo">Catálogo</a>
+
+            <ng-container *ngIf="currentUser$ | async as userState; else linkLoginTemplate">
+                
+                <a routerLink="/novo-jogo">Registrar Jogo</a>
+                
+                <a (click)="logout()" style="cursor: pointer;">
+                    Sair ({{ userState.email }})
+                </a>
+            </ng-container>
+
+            <ng-template #linkLoginTemplate>
+                <a routerLink="/login">Login</a>
+                </ng-template>
+        </div>
+    </div>
+</header>
+
+<main class="app-content">
+    <router-outlet></router-outlet>
+</main>

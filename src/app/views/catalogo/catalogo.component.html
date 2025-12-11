@@ -1,0 +1,55 @@
+<div class="catalogo-container">
+    <h1>Catálogo de Jogos do GRL</h1>
+    
+    <div class="header-actions">
+        
+        <button 
+            *ngIf="authService.currentUser$ | async" 
+            [routerLink]="['/novo-jogo']" 
+            class="btn btn-add"
+            
+            >
+            + Registrar Novo Jogo
+        </button>
+        
+    </div>
+
+
+    <div *ngIf="loading" class="alert alert-info">
+        A carregar jogos...
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-error">
+        {{ errorMessage }}
+        <button (click)="carregarJogos()">Tentar Novamente</button>
+    </div>
+
+    <div *ngIf="jogos$ | async as jogos" class="jogos-section">
+        <div *ngIf="jogos.length === 0 && !loading" class="alert alert-warning">
+            Ainda não há jogos registrados.
+        </div>
+
+        <div class="jogos-grid">
+            <div *ngFor="let jogo of jogos" class="jogo-card">
+                
+                <img [src]="jogo.capa_url" alt="Capa de {{ jogo.titulo }}" class="capa-jogo">
+                
+                <div class="card-body">
+                    <h3>{{ jogo.titulo }}</h3>
+                    <p class="genero-plataforma">{{ jogo.genero }} | {{ jogo.plataforma }}</p>
+                    
+                    <div class="pontuacao">
+                        ⭐ Média: 
+                        <span class="score-display">
+                            {{ (jogo.pontuacao_media !== null && jogo.pontuacao_media !== undefined) ? 
+                                (jogo.pontuacao_media | number:'1.1-1') : 'N/A' 
+                            }}
+                        </span>
+                    </div>
+                    
+                    <a (click)="verDetalhes(jogo.id)" class="btn btn-primary" style="cursor: pointer;">Ver Detalhes</a> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

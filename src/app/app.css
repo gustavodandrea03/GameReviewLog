@@ -1,0 +1,185 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+/*importa a fonte Roboto do Google Fonts */
+:root {
+    /* Cores de Fundo e Texto */
+    --color-background: #f4f7f6; 
+    --color-text-primary: #1e1e2f;
+    --color-text-secondary: #6c757d; 
+
+    /* Cores de Ação e Destaque  */
+    --color-primary: #6c5ce7; 
+    --color-accent: #ff8c00; 
+    --color-danger: #dc3545; 
+    --color-success: #28a745;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* --- ESTILOS DE BOTÃO BASE --- */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #5a4bcf; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add {
+    background-color: var(--color-accent);
+    color: white;
+}
+
+.btn-add:hover {
+    background-color: #e67e00;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-danger {
+    background-color: var(--color-danger);
+    color: white;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+
+/* --- NAVEGAÇÃO PRINCIPAL (Navbar) --- */
+.main-nav {
+    background-color: white; 
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0; 
+}
+
+/* Título da Aplicação */
+.main-nav .app-title {
+    color: var(--color-primary); /* Roxo de destaque */
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 0;
+}
+
+/* Links de Navegação */
+.main-nav a {
+    color: var(--color-text-primary); 
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    background-color: var(--color-primary); 
+    color: white;
+}
+
+/* Espaçamento entre os links na navegação */
+.main-nav .nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+/* --- ESTILOS DE ALERTA/FEEDBACK (Usado em vários componentes) --- */
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-weight: 500;
+    /* Centraliza o alerta se estiver no topo da página */
+    max-width: 90%; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Alerta de Informação/Carregamento */
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+/* Alerta de Sucesso  */
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* Alerta de Erro/Perigo  */
+.alert-error, .error-message {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* Alerta de Aviso */
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+
+/* --- LAYOUT DA PÁGINA --- */
+.app-content {
+    padding: 20px;
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+html, body {
+    height: 100%;
+}
+
+
+
+.alert button {
+    /* Estiliza o botão dentro da mensagem de alerta  */
+    margin-left: 15px;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    border: none;
+    background-color: transparent;
+    color: inherit; /* Herda a cor do texto do alerta  */
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.alert button:hover {
+    opacity: 0.8;
+}

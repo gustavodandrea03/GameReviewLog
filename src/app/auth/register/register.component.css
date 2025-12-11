@@ -1,0 +1,99 @@
+
+.auth-container {
+    max-width: 400px;
+    margin: 60px auto; 
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); 
+}
+
+.auth-container h2 {
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+/* Estilo dos Inputs */
+.auth-container input[type="email"],
+.auth-container input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-container input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+    outline: none;
+}
+
+/* Estilo para validação (campos invalidos) */
+.auth-container input.ng-invalid.ng-touched {
+    border-color: var(--color-danger);
+}
+
+.error-message,
+.error {
+    color: var(--color-danger);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Estilo do botao login */
+.auth-container button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    
+    background-color: var(--color-primary); 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.auth-container button[type="submit"]:hover:not(:disabled) {
+    background-color: #5a4bcf;
+}
+
+.auth-container button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.switch-auth {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.95rem;
+}
+
+.switch-auth a {
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.switch-auth a:hover {
+    text-decoration: underline;
+}

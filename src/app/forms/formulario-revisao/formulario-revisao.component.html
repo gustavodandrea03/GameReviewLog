@@ -1,0 +1,55 @@
+<div class="form-container">
+    <h2>{{ isEditing ? 'Editar Revisão' : 'Nova Revisão' }}</h2>
+
+    <form [formGroup]="revisaoForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group" *ngIf="!isEditing">
+            <label for="jogo_id">Jogo</label>
+            <select id="jogo_id" formControlName="jogo_id">
+                <option value="" disabled selected>Selecione um jogo</option>
+                <option *ngFor="let jogo of jogos$ | async" [value]="jogo.id">
+                    {{ jogo.titulo }} ({{ jogo.plataforma }})
+                </option>
+            </select>
+            <small *ngIf="revisaoForm.get('jogo_id')?.invalid && revisaoForm.get('jogo_id')?.touched" class="error">
+                O jogo é obrigatório.
+            </small>
+        </div>
+        
+        <div class="form-group">
+            <label for="pontuacao">Pontuação (1-10)</label>
+            <input id="pontuacao" type="number" formControlName="pontuacao" min="1" max="10" />
+            <small *ngIf="revisaoForm.get('pontuacao')?.invalid && revisaoForm.get('pontuacao')?.touched" class="error">
+                Pontuação deve ser entre 1 e 10.
+            </small>
+        </div>
+        
+        <div class="form-group">
+            <label for="pontos_fortes">Pontos Fortes</label>
+            <textarea id="pontos_fortes" formControlName="pontos_fortes" rows="4"></textarea>
+            <small *ngIf="revisaoForm.get('pontos_fortes')?.invalid && revisaoForm.get('pontos_fortes')?.touched" class="error">
+                Mínimo 10 caracteres.
+            </small>
+        </div>
+        
+        <div class="form-group">
+            <label for="pontos_fracos">Pontos Fracos</label>
+            <textarea id="pontos_fracos" formControlName="pontos_fracos" rows="4"></textarea>
+            <small *ngIf="revisaoForm.get('pontos_fracos')?.invalid && revisaoForm.get('pontos_fracos')?.touched" class="error">
+                Mínimo 10 caracteres.
+            </small>
+        </div>
+
+        <div class="form-group" *ngIf="!isEditing">
+            <label for="screenshot">Screenshot (Opcional)</label>
+            <input id="screenshot" type="file" (change)="onFileSelected($event)" accept="image/*" />
+        </div>
+        
+        <button type="submit" [disabled]="loading || revisaoForm.invalid">
+            {{ loading ? 'Salvando...' : (isEditing ? 'Salvar Edição' : 'Submeter Revisão') }}
+        </button>
+        
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+        
+    </form>
+</div>
